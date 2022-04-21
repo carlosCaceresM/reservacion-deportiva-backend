@@ -5,14 +5,9 @@ pipeline{
         label 'Slave_Induccion'
     }
 
-  options {
-    	buildDiscarder(logRotator(numToKeepStr: '3'))
- 	    disableConcurrentBuilds()
-  }
-
-    environment {
-        PROJECT_PATH_BACK = 'microservicio'
-        BRANCH_NAME = 'master'
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+        disableConcurrentBuilds()
     }
 
     tools {
@@ -23,59 +18,47 @@ pipeline{
         stage('Checkout') {
             steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
-                gitCheckout(
-                    urlProject:'https://github.com/carlosCaceresM/reservacion-deportiva-backend.git',
-                    branchProject: '${BRANCH_NAME}',
-                )
-
-                dir("${PROJECT_PATH_BACK}"){
-                    sh 'chmod +x ./gradlew'
-                    sh './gradlew clean'
-                }
+                checkout scm
             }
         }
 
-            stage('Compilacion y Test Unitarios'){
-                parallel {
-                    stage('Test- Backend'){
-                        steps {
-                            echo '------------>Test Backend<------------'
-                            dir("${PROJECT_PATH_BACK}"){
-                                sh './gradlew --stacktrace test'
-                            }
-                        }
-                        post{
-                            always {
-                                junit '**/build/test-results/test/*.xml'
-                            }
-                        }
-                    }
-                }
+        stage('Compilacion y Test Unitarios'){
+
+            steps{
+
+                echo "------------>Clean Tests<------------"
+
+                sh 'chmod +x ./microservicio/gradlew'
+                sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
+
+                echo "------------>compile & Unit Tests<------------"
+
+                sh 'chmod +x ./microservicio/gradlew'
+                sh './microservicio/gradlew --b ./microservicio/build.gradle test'
             }
+
+        }
 
 		stage('Static Code Analysis') {
 			steps{
-				sonarqubeMasQualityGates(
-				sonarKey:'',
-				sonarName:'',
-				sonarPathProperties:'./sonar-project.properties')
+
+                echo '------------>Análisis de código estático<------------'
+
+				sonarqubeMasQualityGatesP(
+                    sonarKey:'co.com.ceiba:adn:reservacion-deportiva-backend.carlos.caceres',
+                    sonarName:'CeibaADN-ReservacionDeportivaBackend(carlos.caceres)',
+                    sonarPathProperties:'./sonar-project.properties'
+                )
 			}
 		}
 
         stage('Build'){
-            parallel {
-                stage('construcción Backend'){
-                    steps{
-                        echo "------------>Compilación backend<------------"
-                        dir("${PROJECT_PATH_BACK}"){
-                            sh './gradlew build -x test'
-                        }
-                    }
-                }
+            steps{
+                echo "------------>Build<------------"
+                sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
             }
          }
     }
-
     post {
         failure {
             mail(
