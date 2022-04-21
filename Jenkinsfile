@@ -12,6 +12,7 @@ pipeline{
 
     environment {
         PROJECT_PATH_BACK = 'microservicio'
+        BRANCH_NAME = 'master'
     }
 
     tools {
