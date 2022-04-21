@@ -46,7 +46,7 @@ pipeline{
 
 				sonarqubeMasQualityGatesP(
                     sonarKey:'co.com.ceiba:adn:reservacion-deportiva-backend.carlos.caceres',
-                    sonarName:'CeibaADN-ReservacionDeportivaBackend(carlos.caceres)',
+                    sonarName:'''"CeibaADN-ReservacionDeportivaBackend(carlos.caceres)"''',
                     sonarPathProperties:'./sonar-project.properties'
                 )
 			}
