@@ -1,4 +1,4 @@
-package com.ceiba.cancha.entidad;
+package com.ceiba.cancha.modelo.entidad;
 
 import lombok.Getter;
 

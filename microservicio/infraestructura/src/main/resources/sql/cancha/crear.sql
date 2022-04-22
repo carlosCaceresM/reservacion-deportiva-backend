@@ -1,0 +1,1 @@
+insert into cancha (nombre,id_tipo_cancha) values (:nombre, :idTipoCancha)

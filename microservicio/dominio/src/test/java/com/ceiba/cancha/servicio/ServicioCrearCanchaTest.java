@@ -1,7 +1,7 @@
 package com.ceiba.cancha.servicio;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.cancha.entidad.Cancha;
+import com.ceiba.cancha.modelo.entidad.Cancha;
 import com.ceiba.cancha.puerto.repositorio.RepositorioCancha;
 import com.ceiba.cancha.servicio.testdatabuilder.CanchaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;

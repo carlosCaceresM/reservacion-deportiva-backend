@@ -1,5 +1,9 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.cancha.puerto.repositorio.RepositorioCancha;
+import com.ceiba.cancha.servicio.ServicioActualizarCancha;
+import com.ceiba.cancha.servicio.ServicioCrearCancha;
+import com.ceiba.cancha.servicio.ServicioEliminarCancha;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
@@ -24,6 +28,20 @@ public class BeanServicio {
     public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
         return new ServicioActualizarUsuario(repositorioUsuario);
     }
-	
+
+    @Bean
+    public ServicioCrearCancha servicioCrearCancha(RepositorioCancha repositorioCancha) {
+        return new ServicioCrearCancha(repositorioCancha);
+    }
+
+    @Bean
+    public ServicioEliminarCancha servicioEliminarCancha(RepositorioCancha repositorioCancha) {
+        return new ServicioEliminarCancha(repositorioCancha);
+    }
+
+    @Bean
+    public ServicioActualizarCancha servicioActualizarCancha(RepositorioCancha repositorioCancha) {
+        return new ServicioActualizarCancha(repositorioCancha);
+    }
 
 }

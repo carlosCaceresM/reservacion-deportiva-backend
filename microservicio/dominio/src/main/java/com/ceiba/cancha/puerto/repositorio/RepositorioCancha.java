@@ -1,6 +1,6 @@
 package com.ceiba.cancha.puerto.repositorio;
 
-import com.ceiba.cancha.entidad.Cancha;
+import com.ceiba.cancha.modelo.entidad.Cancha;
 
 public interface RepositorioCancha {
 

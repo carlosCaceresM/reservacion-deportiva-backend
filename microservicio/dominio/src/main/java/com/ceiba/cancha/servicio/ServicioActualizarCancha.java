@@ -1,6 +1,6 @@
 package com.ceiba.cancha.servicio;
 
-import com.ceiba.cancha.entidad.Cancha;
+import com.ceiba.cancha.modelo.entidad.Cancha;
 import com.ceiba.cancha.puerto.repositorio.RepositorioCancha;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 

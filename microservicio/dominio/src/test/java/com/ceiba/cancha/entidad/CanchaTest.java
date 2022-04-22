@@ -1,6 +1,7 @@
 package com.ceiba.cancha.entidad;
 
 import com.ceiba.BasePrueba;
+import com.ceiba.cancha.modelo.entidad.Cancha;
 import com.ceiba.cancha.servicio.testdatabuilder.CanchaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import org.junit.jupiter.api.DisplayName;
