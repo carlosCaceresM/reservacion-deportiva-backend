@@ -13,19 +13,19 @@ public class RepositorioCanchaMysql implements RepositorioCancha {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "cancha", value = "crear")
-    private static String sqlCrear;
+    private static String sqlCrearCancha;
 
     @SqlStatement(namespace = "cancha", value = "actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarCancha;
 
     @SqlStatement(namespace = "cancha", value = "eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarCancha;
 
     @SqlStatement(namespace = "cancha", value = "existe")
-    private static String sqlExiste;
+    private static String sqlExisteCancha;
 
     @SqlStatement(namespace = "cancha", value = "existePorId")
-    private static String sqlExistePorId;
+    private static String sqlExisteCanchaPorId;
 
     public RepositorioCanchaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -33,12 +33,12 @@ public class RepositorioCanchaMysql implements RepositorioCancha {
 
     @Override
     public Long crear(Cancha cancha) {
-        return this.customNamedParameterJdbcTemplate.crear(cancha, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(cancha, sqlCrearCancha);
     }
 
     @Override
     public void actualizar(Cancha cancha) {
-        this.customNamedParameterJdbcTemplate.actualizar(cancha, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(cancha, sqlActualizarCancha);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RepositorioCanchaMysql implements RepositorioCancha {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarCancha, paramSource);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class RepositorioCanchaMysql implements RepositorioCancha {
         paramSource.addValue("nombre", nombre);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlExiste, paramSource, Boolean.class);
+                .queryForObject(sqlExisteCancha, paramSource, Boolean.class);
     }
 
     @Override
@@ -64,6 +64,6 @@ public class RepositorioCanchaMysql implements RepositorioCancha {
         paramSource.addValue("id", id);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlExistePorId, paramSource, Boolean.class);
+                .queryForObject(sqlExisteCanchaPorId, paramSource, Boolean.class);
     }
 }
