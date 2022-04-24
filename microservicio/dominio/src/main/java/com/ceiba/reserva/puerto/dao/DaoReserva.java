@@ -6,8 +6,10 @@ import java.util.List;
 
 public interface DaoReserva {
 
-    List<DtoReserva> listarPorNombreUsuario(String nombreUsuario);
+    List<DtoReserva> listar();
 
     DtoReserva listarPorId(Long id);
+
+    DtoReserva listarPorNombreUsuario(String nombreUsuario);
 
 }

@@ -19,14 +19,14 @@ public class ServicioEliminarReserva {
         this.daoReserva = daoReserva;
     }
 
-    public void ejecutar(Long id, LocalDateTime fecha) {
-        validarHoraPermitidaParaAnularReserva(id, fecha);
-        this.repositorioReserva.eliminar(id, fecha);
+    public void ejecutar(Long id) {
+        validarHoraPermitidaParaAnularReserva(id);
+        this.repositorioReserva.eliminar(id);
     }
 
-    private void validarHoraPermitidaParaAnularReserva(Long id, LocalDateTime fecha) {
+    private void validarHoraPermitidaParaAnularReserva(Long id) {
         DtoReserva dtoReserva = this.daoReserva.listarPorId(id);
-        if (fecha.toLocalTime().isAfter(dtoReserva.getFecha().toLocalTime().plusHours(-3))) {
+        if (LocalDateTime.now().toLocalTime().isAfter(dtoReserva.getFecha().toLocalTime().plusHours(-3))) {
             throw new ExcepcionValorInvalido(LA_RESERVA_NO_PUEDE_SER_ANULADA);
         }
     }

@@ -1,9 +1,6 @@
 package com.ceiba.reserva.servicio;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.cancha.puerto.repositorio.RepositorioCancha;
-import com.ceiba.cancha.servicio.ServicioCrearCancha;
-import com.ceiba.cancha.servicio.testdatabuilder.CanchaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
