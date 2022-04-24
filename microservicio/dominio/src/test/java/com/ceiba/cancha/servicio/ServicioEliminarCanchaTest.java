@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class ServicioEliminarUsuarioTest {
+public class ServicioEliminarCanchaTest {
 
     @Test
     @DisplayName("Deberia eliminar la Cancha llamando al repositorio")
