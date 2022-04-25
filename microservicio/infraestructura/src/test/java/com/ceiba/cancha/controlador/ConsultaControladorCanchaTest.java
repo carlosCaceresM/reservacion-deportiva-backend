@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ConsultaControladorUsuario.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class ConsultaControladorUsuarioTest {
+class ConsultaControladorCanchaTest {
 
     @Autowired
     private MockMvc mocMvc;
@@ -34,7 +34,7 @@ class ConsultaControladorUsuarioTest {
 
         Long idTipoCancha = 1L;
 
-        mocMvc.perform(get("/canchas/{id}", idTipoCancha)
+        mocMvc.perform(get("/canchas/tipo/{id}", idTipoCancha)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(4)))

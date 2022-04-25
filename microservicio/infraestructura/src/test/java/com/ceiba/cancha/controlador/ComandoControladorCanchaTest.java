@@ -68,7 +68,7 @@ class ComandoControladorCanchaTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        mocMvc.perform(get("/canchas/{id}", id)
+        mocMvc.perform(get("/canchas/tipo/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)));
