@@ -2,6 +2,7 @@ package com.ceiba.reserva.puerto.dao;
 
 import com.ceiba.reserva.modelo.dto.DtoReserva;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DaoReserva {
@@ -10,6 +11,6 @@ public interface DaoReserva {
 
     DtoReserva listarPorId(Long id);
 
-    DtoReserva listarPorNombreUsuario(String nombreUsuario);
+    List<DtoReserva> listarPorNombreUsuario(String nombreUsuario, Long idCancha);
 
 }

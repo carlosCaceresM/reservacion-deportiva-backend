@@ -44,11 +44,12 @@ class ConsultaControladorReservaTest {
     void deberiaListarReservaPorNombreDeUsuario() throws Exception {
 
         String nombreUsuario = "Hiko";
+        Long idCancha = 1L;
 
-        mocMvc.perform(get("/reservas/{id}", nombreUsuario)
+        mocMvc.perform(get("/reservas/{nombreUsuario}/{idCancha}", nombreUsuario, idCancha)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(1)));
+                .andExpect(jsonPath("$[0].id", is(1)));
     }
 
 }

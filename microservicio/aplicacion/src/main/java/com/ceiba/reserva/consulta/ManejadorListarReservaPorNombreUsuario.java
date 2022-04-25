@@ -15,7 +15,7 @@ public class ManejadorListarReservaPorNombreUsuario {
         this.daoReserva = daoReserva;
     }
 
-    public DtoReserva ejecutar(String nombreUsuario) {
-        return this.daoReserva.listarPorNombreUsuario(nombreUsuario);
+    public List<DtoReserva> ejecutar(String nombreUsuario, Long idCancha) {
+        return this.daoReserva.listarPorNombreUsuario(nombreUsuario, idCancha);
     }
 }

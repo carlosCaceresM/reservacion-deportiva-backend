@@ -8,6 +8,7 @@ import com.ceiba.reserva.puerto.dao.DaoReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -46,11 +47,12 @@ public class DaoReservaMysql implements DaoReserva {
     }
 
     @Override
-    public DtoReserva listarPorNombreUsuario(String nombreUsuario) {
+    public List<DtoReserva> listarPorNombreUsuario(String nombreUsuario, Long idCancha) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombreUsuario", nombreUsuario);
+        paramSource.addValue("idCancha", idCancha);
         return this.customNamedParameterJdbcTemplate
                 .getNamedParameterJdbcTemplate()
-                .queryForObject(sqlListarPorNombreUsuario, paramSource, new MapeoReserva());
+                .query(sqlListarPorNombreUsuario, paramSource, new MapeoReserva());
     }
 }
