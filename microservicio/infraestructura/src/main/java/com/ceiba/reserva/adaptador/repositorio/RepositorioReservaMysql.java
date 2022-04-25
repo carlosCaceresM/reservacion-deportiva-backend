@@ -59,7 +59,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         paramSource.addValue("estado", estado);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlExisteReservaPorId, paramSource, Boolean.class);
+                .queryForObject(sqlExisteReserva, paramSource, Boolean.class);
     }
 
 

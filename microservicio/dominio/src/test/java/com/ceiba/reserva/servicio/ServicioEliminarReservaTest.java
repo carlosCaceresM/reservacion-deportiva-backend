@@ -13,11 +13,12 @@ import java.time.LocalDateTime;
 
 public class ServicioEliminarReservaTest {
 
-    @Test
-    @DisplayName("Deberia lanzar una exepcion cuando se valida la fecha de cancelacion")
-    void deberiaLanzarUnaExepcionCuandoSeValidaLaFechaDeCancelacion() {
 
-        LocalDateTime fechaReservacion = LocalDateTime.now().plusHours(4);
+    @Test
+    @DisplayName("Deberia eliminar la Reservacion llamando al repositorio")
+    void deberiaEliminarLaReservacionLlamandoAlRepositorio() {
+
+        LocalDateTime fechaReservacion = LocalDateTime.now().plusDays(1);
         DtoReserva dtoReserva = new DtoReserva(1L, "hiko",
                 fechaReservacion, 2, 600000,
                 true, "campo 1"
@@ -36,11 +37,12 @@ public class ServicioEliminarReservaTest {
     }
 
     @Test
-    @DisplayName("Deberia eliminar la Reservacion llamando al repositorio")
-    void deberiaEliminarLaReservacionLlamandoAlRepositorio() {
+    @DisplayName("Deberia lanzar una exepcion cuando se valida la fecha de cancelacion")
+    void deberiaLanzarUnaExepcionCuandoSeValidaLaFechaDeCancelacion() {
 
+        LocalDateTime fechaReservacion = LocalDateTime.now().plusHours(-1);
         DtoReserva dtoReserva = new DtoReserva(1L, "hiko",
-                LocalDateTime.now(), 2, 600000,
+                fechaReservacion, 2, 600000,
                 true, "campo 1"
         );
 

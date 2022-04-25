@@ -1,8 +1,10 @@
-package com.ceiba.cancha.controlador;
+package com.ceiba.reserva.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.cancha.comando.ComandoCancha;
 import com.ceiba.cancha.servicio.testdatabuilder.ComandoCanchaTestDataBuilder;
+import com.ceiba.reserva.comando.ComandoReserva;
+import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
 import com.ceiba.usuario.controlador.ComandoControladorUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -16,6 +18,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -24,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ComandoControladorUsuario.class)
 @ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class ComandoControladorCanchaTest {
+class ComandoControladorReservaTest {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -33,45 +37,45 @@ class ComandoControladorCanchaTest {
     private MockMvc mocMvc;
 
     @Test
-    @DisplayName("Deberia crear una cancha")
-    void deberiaCrearUnaCancha() throws Exception {
+    @DisplayName("Deberia crear una Reserva")
+    void deberiaCrearUnaReserva() throws Exception {
 
-        ComandoCancha cancha = new ComandoCanchaTestDataBuilder().build();
+        ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
 
-        mocMvc.perform(post("/canchas")
+        mocMvc.perform(post("/reservas")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(cancha)))
+                        .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 7}"));
+                .andExpect(content().json("{'valor': 2}"));
     }
 
     @Test
-    @DisplayName("Deberia actualizar los datos de una cancha")
-    void deberiaActualizarUnaCancha() throws Exception {
+    @DisplayName("Deberia actualizar los datos de una Reserva")
+    void deberiaActualizarUnaReserva() throws Exception {
 
         Long id = 1L;
-        ComandoCancha cancha = new ComandoCanchaTestDataBuilder().build();
+        ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
 
-        mocMvc.perform(put("/canchas/{id}", id)
+        mocMvc.perform(put("/reservas/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(cancha)))
+                        .content(objectMapper.writeValueAsString(reserva)))
                 .andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("Deberia eliminar una Cancha")
-    void deberiaEliminarUnaCancha() throws Exception {
+    @DisplayName("Deberia eliminar una Reserva")
+    void deberiaEliminarUnaReserva() throws Exception {
 
-        Long id = 2L;
-        mocMvc.perform(delete("/canchas/{id}", id)
+        Long id = 1L;
+        mocMvc.perform(delete("/reservas/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        mocMvc.perform(get("/canchas/tipo/{id}", id)
+        mocMvc.perform(get("/reservas")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)));
+                .andExpect(jsonPath("$", hasSize(0)));
     }
 
 }

@@ -1,8 +1,8 @@
-UPDATE reserva
-SET	nombre_usuario = :nombreUsuario,
+update reserva
+set nombre_usuario = :nombreUsuario,
 	fecha = :fecha,
-    horas_reservadas =:horasReservadas,
+	horas_reservadas = :horasReservadas,
 	valor_pagar = :valorPagar,
 	estado = :estado,
-    id_cancha = :idCancha
-WHERE id = :id
+	id_cancha = :idCancha
+where id = :id

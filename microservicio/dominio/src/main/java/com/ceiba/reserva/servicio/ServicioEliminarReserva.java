@@ -26,7 +26,7 @@ public class ServicioEliminarReserva {
 
     private void validarHoraPermitidaParaAnularReserva(Long id) {
         DtoReserva dtoReserva = this.daoReserva.listarPorId(id);
-        if (LocalDateTime.now().toLocalTime().isAfter(dtoReserva.getFecha().toLocalTime().plusHours(-3))) {
+        if (LocalDateTime.now().isAfter(dtoReserva.getFecha().plusHours(-3))) {
             throw new ExcepcionValorInvalido(LA_RESERVA_NO_PUEDE_SER_ANULADA);
         }
     }

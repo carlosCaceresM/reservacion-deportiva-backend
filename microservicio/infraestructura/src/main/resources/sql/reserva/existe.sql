@@ -1,1 +1,4 @@
-select count(1) from reserva where nombre = :nombre
+SELECT COUNT(1) FROM reserva
+WHERE fecha = :fecha
+AND id_cancha = :idCancha
+AND estado = :estado
