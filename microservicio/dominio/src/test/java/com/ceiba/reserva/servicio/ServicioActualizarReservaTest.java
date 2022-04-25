@@ -17,7 +17,7 @@ class ServicioActualizarReservaTest {
     @DisplayName("Deberia validar la existencia previa de la Reserva")
     void deberiaValidarLaExistenciaPreviaDeLaReserva() {
 
-        LocalDateTime fecha = LocalDateTime.now().withHour(17);
+        LocalDateTime fecha = LocalDateTime.parse("2022-04-26T17:12:43");
 
         Reserva reserva = new ReservaTestDataBuilder().conId(1L).conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
@@ -33,7 +33,7 @@ class ServicioActualizarReservaTest {
     @DisplayName("Deberia actualizar correctamente en el repositorio")
     void deberiaActualizarCorrectamenteEnElRepositorio() {
 
-        LocalDateTime fecha = LocalDateTime.now().withHour(17);
+        LocalDateTime fecha = LocalDateTime.parse("2022-04-26T17:12:43");
 
         Reserva reserva = new ReservaTestDataBuilder().conId(1L).conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);

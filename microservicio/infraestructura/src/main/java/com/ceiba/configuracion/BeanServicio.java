@@ -60,7 +60,7 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioEliminarReserva servicioActualizarCancha(RepositorioReserva repositorioReserva, DaoReserva daoReserva) {
+    public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva) {
         return new ServicioEliminarReserva(repositorioReserva, daoReserva);
     }
 

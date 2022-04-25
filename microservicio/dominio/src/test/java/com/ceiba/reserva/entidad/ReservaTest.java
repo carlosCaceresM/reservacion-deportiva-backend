@@ -83,7 +83,8 @@ class ReservaTest {
     @DisplayName("Deberia fallar la creacion cuando la hora no es habil")
     void deberiaFallarCuandoLaHoraNoEsHabil() {
 
-        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(1L).conFecha(LocalDateTime.now().withHour(14));
+        LocalDateTime fecha = LocalDateTime.parse("2022-04-26T02:12:43");
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(1L).conFecha(fecha);
         BasePrueba.assertThrows(() -> {
                     reservaTestDataBuilder.build();
                 },

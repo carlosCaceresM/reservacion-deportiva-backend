@@ -22,9 +22,9 @@ public class ConsultaControladorCancha {
         this.manejadorListarCanchaPorTipo = manejadorListarCanchaPorTipo;
     }
 
-    @GetMapping(value = "/{idTipoCancha}")
+    @GetMapping(value = "/tipo/{idTipoCancha}")
     @ApiOperation("Listar Canchas por Tipo")
-    public List<DtoCancha> listar(@PathVariable Long idTipoCancha) {
+    public List<DtoCancha> listarPorTipoCancha(@PathVariable Long idTipoCancha) {
         return this.manejadorListarCanchaPorTipo.ejecutar(idTipoCancha);
     }
 
