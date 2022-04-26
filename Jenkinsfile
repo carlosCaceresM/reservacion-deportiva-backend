@@ -31,6 +31,9 @@ pipeline{
 
             steps{
 
+                echo "------------>Docker prueba<------------"
+                 sh 'docker network create network_reservacion_deportiva'
+
                 echo "------------>Clean Tests<------------"
 
                 sh 'chmod +x ./microservicio/gradlew'
@@ -65,7 +68,7 @@ pipeline{
 
         stage('Run Database') {
             steps {
-                sh ""
+                sh 'docker network create network_reservacion_deportiva'
                 iniciarContenedores("${NAME_BASE_DOCKER_COMPOSE}")
             }
         }
