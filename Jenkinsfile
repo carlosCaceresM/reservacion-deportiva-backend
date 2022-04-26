@@ -31,9 +31,6 @@ pipeline{
 
             steps{
 
-                echo "------------>prueba<------------"
-                 sh 'sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
-
                 echo "------------>Clean Tests<------------"
 
                 sh 'chmod +x ./microservicio/gradlew'
@@ -59,7 +56,7 @@ pipeline{
                 )
 			}
 		}
-
+/*
         stage('Build DEV') {
             steps {
                 sh "docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} build"
@@ -76,7 +73,7 @@ pipeline{
             steps {
                 sh "docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} up -d"
             }
-        }
+        } */
     }
     post {
         failure {
