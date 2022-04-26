@@ -11,8 +11,10 @@ pipeline{
     }
 
     environment {
-        NAME_DEV_DOCKER_COMPOSE = 'dev.docker-compose.yml'
-        NAME_BASE_DOCKER_COMPOSE = 'base.docker-compose.yml'
+
+        AMBIENTE_DEV = 'dev'
+        NOMBRE_IMAGEN_DOKER = 'reservacion-deportiva-backend'
+        NOMBRE_DB_DOKER = 'reservacion-deportiva-db'
     }
 
     tools {
@@ -56,24 +58,25 @@ pipeline{
                 )
 			}
 		}
-/*
+
         stage('Build DEV') {
             steps {
-                sh "docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} build"
+                sh "docker build -t ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV} . --build-arg AMBIENTE=${AMBIENTE_DEV}"
             }
         }
 
         stage('Run Database') {
             steps {
-                sh "docker-compose -f ./${NAME_BASE_DOCKER_COMPOSE} up -d"
+            NOMBRE_DB_DOKER
+                sh "docker run -d --name ${NOMBRE_DB_DOKER} --network network_reservacion_deportiva -p 3306:3306 -e MYSQL_ROOT_PASSWORD=ceiba mysql:8.0"
             }
         }
 
         stage('Deploy DEV') {
             steps {
-                sh "docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} up -d"
+                sh "docker run -d --name ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV} --network network_reservacion_deportiva -p 8081:8080 ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV}"
             }
-        } */
+        }
     }
     post {
         failure {
