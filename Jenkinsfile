@@ -11,9 +11,7 @@ pipeline{
     }
 
     environment {
-        // NOMBRES
-        NAME_QA_DOCKER_COMPOSE = 'qa.docker-compose.yml'
-        NAME_PROD_DOCKER_COMPOSE = 'prod.docker-compose.yml'
+        NAME_DEV_DOCKER_COMPOSE = 'dev.docker-compose.yml'
         NAME_BASE_DOCKER_COMPOSE = 'base.docker-compose.yml'
     }
 
@@ -32,9 +30,6 @@ pipeline{
         stage('Compilacion y Test Unitarios'){
 
             steps{
-
-                echo "------------>Clean Tests<------------"
-                sh 'hostname -I'
 
                 echo "------------>Clean Tests<------------"
 
@@ -62,12 +57,24 @@ pipeline{
 			}
 		}
 
-        stage('Build'){
-            steps{
-                echo "------------>Build<------------"
-                sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
+        stage('Build DEV') {
+            steps {
+                ejecutarBuildImage("${NAME_DEV_DOCKER_COMPOSE}")
             }
-         }
+        }
+
+        stage('Run Database') {
+            steps {
+                sh ""
+                iniciarContenedores("${NAME_BASE_DOCKER_COMPOSE}")
+            }
+        }
+
+        stage('Deploy DEV') {
+            steps {
+                iniciarContenedores("${NAME_DEV_DOCKER_COMPOSE}")
+            }
+        }
     }
     post {
         failure {
@@ -82,4 +89,12 @@ pipeline{
             updateGitlabCommitStatus name: 'IC Jenkins', state: 'success'
         }
     }
+}
+
+def ejecutarBuildImage(String nombreDockerCompose) {
+  sh "docker-compose -f ./${nombreDockerCompose} build"
+}
+
+def iniciarContenedores(String nombreDockerCompose) {
+  sh "docker-compose -f ./${nombreDockerCompose} up -d"
 }

@@ -7,12 +7,12 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-    - "3306:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ceiba
     networks:
-    - network_reservacion_deportiva
-    
+      - network_reservacion_deportiva
+
 networks:
   network_reservacion_deportiva:
-     external: true
+    external: true

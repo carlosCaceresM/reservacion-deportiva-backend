@@ -1,18 +1,18 @@
 version: '3.1'
 services:
-  reservacion-deportiva-backend:
-    image: reservacion-deportiva-backend
-    container_name: reservacion-deportiva-backend
+  reservacion-deportiva-backend-dev:
+    image: reservacion-deportiva-backend-dev
+    container_name: reservacion-deportiva-backend-dev
     restart: always
-    build: 
+    build:
       context: ./
       args:
         - AMBIENTE=dev
-    ports:  
-    - "8081:8080"
+    ports:
+      - "8081:8080"
     networks:
-    - network_reservacion_deportiva
-    
+      - network_reservacion_deportiva
+
 networks:
   network_reservacion_deportiva:
-     external: true
+    external: true

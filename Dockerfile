@@ -10,7 +10,7 @@ RUN ./gradlew clean build || return 0
 RUN chmod +x gradlew
 
 FROM openjdk:8
-ENV ARTIFACT_NAME=0.0.1-SNAPSHOT.jar
+ENV ARTIFACT_NAME=reservacion-deportiva-backend-0.0.1-SNAPSHOT.jar
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY --from=TEMP_BUILD_IMAGE $APP_HOME/microservicio/build/libs/$ARTIFACT_NAME .
