@@ -67,7 +67,6 @@ pipeline{
 
         stage('Run Database') {
             steps {
-            NOMBRE_DB_DOKER
                 sh "docker run -d --name ${NOMBRE_DB_DOKER} --network network_reservacion_deportiva -p 3306:3306 -e MYSQL_ROOT_PASSWORD=ceiba mysql:8.0"
             }
         }
