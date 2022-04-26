@@ -32,6 +32,8 @@ pipeline{
         stage('Compilacion y Test Unitarios'){
 
             steps{
+                echo "------------>IP Servidor<------------"
+                sh 'hostname -I'
 
                 echo "------------>Clean Tests<------------"
 
