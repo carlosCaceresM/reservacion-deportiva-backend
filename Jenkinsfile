@@ -61,19 +61,19 @@ pipeline{
 
         stage('Build DEV') {
             steps {
-                sh 'docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} build'
+                sh 'docker-compose -f ./'${NAME_DEV_DOCKER_COMPOSE}' build'
             }
         }
 
         stage('Run Database') {
             steps {
-                sh 'docker-compose -f ./${NAME_BASE_DOCKER_COMPOSE} up -d'
+                sh 'docker-compose -f ./'${NAME_BASE_DOCKER_COMPOSE}' up -d'
             }
         }
 
         stage('Deploy DEV') {
             steps {
-                sh 'docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} up -d'
+                sh 'docker-compose -f ./'${NAME_DEV_DOCKER_COMPOSE}' up -d'
             }
         }
     }
