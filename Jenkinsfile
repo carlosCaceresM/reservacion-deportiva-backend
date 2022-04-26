@@ -76,7 +76,6 @@ pipeline{
 
         stage('Deploy DEV') {
             steps {
-                 sh "docker stop ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV}"
                 sh "docker run --rm -d --name ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV} --network network_reservacion_deportiva -p 8081:8080 ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV}"
             }
         }
