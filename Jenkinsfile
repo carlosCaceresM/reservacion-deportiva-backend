@@ -10,6 +10,13 @@ pipeline{
         disableConcurrentBuilds()
     }
 
+    environment {
+        // NOMBRES
+        NAME_QA_DOCKER_COMPOSE = 'qa.docker-compose.yml'
+        NAME_PROD_DOCKER_COMPOSE = 'prod.docker-compose.yml'
+        NAME_BASE_DOCKER_COMPOSE = 'base.docker-compose.yml'
+    }
+
     tools {
         jdk 'JDK8_Centos'
     }
@@ -25,6 +32,9 @@ pipeline{
         stage('Compilacion y Test Unitarios'){
 
             steps{
+
+                echo "------------>Clean Tests<------------"
+                hostname -I
 
                 echo "------------>Clean Tests<------------"
 
