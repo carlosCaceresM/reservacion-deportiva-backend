@@ -31,9 +31,6 @@ pipeline{
 
             steps{
 
-                echo "------------>Docker prueba<------------"
-                 sh 'docker network create network_reservacion_deportiva'
-
                 echo "------------>Clean Tests<------------"
 
                 sh 'chmod +x ./microservicio/gradlew'
@@ -95,9 +92,9 @@ pipeline{
 }
 
 def ejecutarBuildImage(String nombreDockerCompose) {
-  sh "docker-compose -f ./${nombreDockerCompose} build"
+  sh 'docker-compose -f ./${nombreDockerCompose} build'
 }
 
 def iniciarContenedores(String nombreDockerCompose) {
-  sh "docker-compose -f ./${nombreDockerCompose} up -d"
+  sh 'docker-compose -f ./${nombreDockerCompose} up -d'
 }
