@@ -46,7 +46,8 @@ class ConsultaControladorReservaTest {
         String nombreUsuario = "Hiko";
         Long idCancha = 1L;
 
-        mocMvc.perform(get("/reservas/{nombreUsuario}/{idCancha}", nombreUsuario, idCancha)
+        mocMvc.perform(get("/reservas/nombre-usuario/{nombreUsuario}/cancha/{idCancha}",
+                        nombreUsuario, idCancha)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id", is(1)));
