@@ -34,7 +34,7 @@ pipeline{
             steps{
 
                 echo "------------>Clean Tests<------------"
-                hostname -I
+                sh 'hostname -I'
 
                 echo "------------>Clean Tests<------------"
 
