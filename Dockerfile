@@ -6,7 +6,7 @@ COPY . .
 COPY ./docker/$AMBIENTE.application.yaml ./microservicio/src/main/resources/application.yaml
 WORKDIR /usr/app/microservicio
 RUN chmod +x gradlew
-RUN ./gradlew clean build || return 0
+RUN ./gradlew clean build -x test || return 0
 RUN chmod +x gradlew
 
 FROM openjdk:8
