@@ -30,8 +30,6 @@ pipeline{
         stage('Compilacion y Test Unitarios'){
 
             steps{
-                echo "------------>Docker<------------"
-                sh 'docker-compose version'
 
                 echo "------------>Clean Tests<------------"
 
