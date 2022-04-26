@@ -30,6 +30,8 @@ pipeline{
         stage('Compilacion y Test Unitarios'){
 
             steps{
+                echo "------------>Docker<------------"
+                sh 'docker-compose version'
 
                 echo "------------>Clean Tests<------------"
 
@@ -59,20 +61,19 @@ pipeline{
 
         stage('Build DEV') {
             steps {
-                ejecutarBuildImage("${NAME_DEV_DOCKER_COMPOSE}")
+                sh 'docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} build'
             }
         }
 
         stage('Run Database') {
             steps {
-                sh 'docker network create network_reservacion_deportiva'
-                iniciarContenedores("${NAME_BASE_DOCKER_COMPOSE}")
+                sh 'docker-compose -f ./${NAME_BASE_DOCKER_COMPOSE} up -d'
             }
         }
 
         stage('Deploy DEV') {
             steps {
-                iniciarContenedores("${NAME_DEV_DOCKER_COMPOSE}")
+                sh 'docker-compose -f ./${NAME_DEV_DOCKER_COMPOSE} up -d'
             }
         }
     }
@@ -89,12 +90,4 @@ pipeline{
             updateGitlabCommitStatus name: 'IC Jenkins', state: 'success'
         }
     }
-}
-
-def ejecutarBuildImage(String nombreDockerCompose) {
-  sh 'docker-compose -f ./${nombreDockerCompose} build'
-}
-
-def iniciarContenedores(String nombreDockerCompose) {
-  sh 'docker-compose -f ./${nombreDockerCompose} up -d'
 }
