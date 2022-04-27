@@ -6,7 +6,7 @@ jasypt:
 server:
    port: 8085
    servlet:
-      context-path: /reservacion-deportiva-backend
+      context-path: /reservacion-deportiva
       session:
          timeout: 21600s
 
