@@ -9,5 +9,6 @@ public class DtoCancha {
 
     private Long id;
     private String nombre;
-    private Long idTipoCancha;
+    private String tipoCancha;
+    private double tafira;
 }

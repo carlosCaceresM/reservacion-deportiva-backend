@@ -2,7 +2,6 @@ package com.ceiba.cancha.adaptador.dao;
 
 import com.ceiba.cancha.modelo.dto.DtoCancha;
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -15,9 +14,10 @@ public class MapeoCancha implements RowMapper<DtoCancha>, MapperResult {
 
         Long id = resultSet.getLong("id");
         String nombre = resultSet.getString("nombre");
-        Long idTipoCancha = resultSet.getLong("id_tipo_cancha");
+        String tipoCancha = resultSet.getString("tipo_cancha");
+        double tarifa = resultSet.getDouble("tarifa");
 
-        return new DtoCancha(id, nombre, idTipoCancha);
+        return new DtoCancha(id, nombre, tipoCancha, tarifa);
     }
 
 }
