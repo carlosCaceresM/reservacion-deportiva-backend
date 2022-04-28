@@ -1,11 +1,12 @@
 package com.ceiba.reserva.modelo.entidad;
 
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-import static com.ceiba.dominio.ValidadorArgumento.*;
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Getter
 public class Reserva {
@@ -67,4 +68,17 @@ public class Reserva {
         return valorTotal;
     }
 
+    public static void validarFechaNoPuedeSerIgualAlDiaDeDescanso(LocalDateTime fecha, String mensaje) {
+        DayOfWeek diaDeLaSemana = fecha.getDayOfWeek();
+        if (diaDeLaSemana == DayOfWeek.MONDAY) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void validarHoraDebeSerUnaHoraHabilDeServicio(LocalDateTime fecha, int horaInicioServicio,
+                                                                int horaFinServicio, String mensaje) {
+        if (fecha.getHour() < horaInicioServicio || fecha.getHour() > horaFinServicio) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
 }
