@@ -14,7 +14,6 @@ public class FabricaReserva {
                 comandoReserva.getFecha(),
                 comandoReserva.getHorasReservadas(),
                 comandoReserva.getValorPagar(),
-                comandoReserva.isEstado(),
                 comandoReserva.getIdCancha()
         );
     }

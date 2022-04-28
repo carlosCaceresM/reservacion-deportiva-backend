@@ -11,7 +11,6 @@ public class ReservaTestDataBuilder {
     private LocalDateTime fecha;
     private int horasReservadas;
     private double valorPagar;
-    private boolean estado;
     private Long idCancha;
 
     public ReservaTestDataBuilder() {
@@ -19,7 +18,6 @@ public class ReservaTestDataBuilder {
         fecha = LocalDateTime.parse("2022-04-22T19:12:43");
         horasReservadas = 1;
         valorPagar = 60000;
-        estado = true;
         idCancha = 1L;
     }
 
@@ -38,27 +36,12 @@ public class ReservaTestDataBuilder {
         return this;
     }
 
-    public ReservaTestDataBuilder conHorasReservadas(int horasReservadas) {
-        this.horasReservadas = horasReservadas;
-        return this;
-    }
-
     public ReservaTestDataBuilder conValorPagar(double valorPagar) {
         this.valorPagar = valorPagar;
         return this;
     }
 
-    public ReservaTestDataBuilder conEstado(boolean estado) {
-        this.estado = estado;
-        return this;
-    }
-
-    public ReservaTestDataBuilder conIdCancha(Long idCancha) {
-        this.idCancha = idCancha;
-        return this;
-    }
-
     public Reserva build() {
-        return new Reserva(id, nombreUsuario, fecha, horasReservadas, valorPagar, estado, idCancha);
+        return new Reserva(id, nombreUsuario, fecha, horasReservadas, valorPagar, idCancha);
     }
 }

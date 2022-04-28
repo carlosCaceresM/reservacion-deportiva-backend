@@ -22,6 +22,7 @@ public class Reserva {
     public static final int HORA_APERTURA_DEL_ESTABLECIMIENTO = 17;
     public static final int HORA_CIERRE_DEL_ESTABLECIMIENTO = 22;
     public static final int DESCUENTO = 20;
+    public static final boolean ESTADO_POR_DEFECTO = true;
 
     private Long id;
     private String nombreUsuario;
@@ -33,7 +34,7 @@ public class Reserva {
 
     public Reserva(Long id, String nombreUsuario,
                    LocalDateTime fecha, int horasReservadas,
-                   double valorPagar, boolean estado, Long idCancha
+                   double valorPagar, Long idCancha
     ) {
         validarObligatorio(nombreUsuario, SE_DEBE_INGRESAR_NOMBRE_DE_USUARIO);
         validarObligatorio(fecha, SE_DEBE_INGRESAR_LA_HORA_DE_INICIO);
@@ -52,7 +53,7 @@ public class Reserva {
         this.fecha = fecha;
         this.horasReservadas = horasReservadas;
         this.valorPagar = calcularValorAPagar(fecha, valorPagar, horasReservadas);
-        this.estado = estado;
+        this.estado = ESTADO_POR_DEFECTO;
         this.idCancha = idCancha;
 
     }
