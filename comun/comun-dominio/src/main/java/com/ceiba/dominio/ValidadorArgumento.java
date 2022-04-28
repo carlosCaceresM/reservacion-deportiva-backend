@@ -102,19 +102,4 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
-
-    public static void validarFechaNoPuedeSerIgualAlDiaDeDescanso(LocalDateTime fecha, String mensaje) {
-        DayOfWeek diaDeLaSemana = fecha.getDayOfWeek();
-        if (diaDeLaSemana == DayOfWeek.MONDAY) {
-            throw new ExcepcionValorInvalido(mensaje);
-        }
-    }
-
-    public static void validarHoraDebeSerUnaHoraHabilDeServicio(LocalDateTime fecha, int horaInicioServicio,
-                                                                int horaFinServicio, String mensaje) {
-        if (fecha.getHour() < horaInicioServicio || fecha.getHour() > horaFinServicio) {
-            throw new ExcepcionValorInvalido(mensaje);
-        }
-    }
-
 }
