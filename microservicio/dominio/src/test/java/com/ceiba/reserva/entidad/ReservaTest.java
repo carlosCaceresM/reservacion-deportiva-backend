@@ -19,7 +19,7 @@ class ReservaTest {
     @DisplayName("Deberia crear correctamente la Reserva")
     void deberiaCrearCorrectamenteLaReserva() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-04-22T19:12:43");
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-22T19:12:43");
         double valorPagar = 60000;
 
         Reserva reserva = new ReservaTestDataBuilder()
@@ -42,8 +42,8 @@ class ReservaTest {
     @DisplayName("Deberia crear correctamente la Reserva con descuento")
     void deberiaCrearCorrectamenteLaReservaConDescuento() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-04-19T19:12:43");
-        double valorConDescuento = 48000;
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-22T19:12:43");
+        double valorConDescuento = 60000;
 
         Reserva reserva = new ReservaTestDataBuilder()
                 .conId(1L)
@@ -81,11 +81,23 @@ class ReservaTest {
     @DisplayName("Deberia fallar la creacion cuando la hora no es habil")
     void deberiaFallarCuandoLaHoraNoEsHabil() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-04-26T02:12:43");
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-22T02:12:43");
         ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(1L).conFecha(fecha);
         BasePrueba.assertThrows(() -> {
                     reservaTestDataBuilder.build();
                 },
                 ExcepcionValorInvalido.class, "La hora debe ser una hora habil de servicio");
+    }
+
+    @Test
+    @DisplayName("Deberia fallar la creacion cuando la fecha es menor a la fecha actual")
+    void deberiaFallarCuandoLafechaEsMenosAlDiaActual() {
+
+        LocalDateTime fecha = LocalDateTime.parse("2022-04-26T02:12:43");
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(1L).conFecha(fecha);
+        BasePrueba.assertThrows(() -> {
+                    reservaTestDataBuilder.build();
+                },
+                ExcepcionValorInvalido.class, "La fecha no puede ser menor al dia de actual");
     }
 }

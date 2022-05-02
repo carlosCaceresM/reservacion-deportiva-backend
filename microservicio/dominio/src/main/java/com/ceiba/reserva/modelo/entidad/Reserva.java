@@ -17,6 +17,7 @@ public class Reserva {
     private static final String SE_DEBE_INGRESAR_EL_VALOR_A_PAGAR = "Se debe ingresar el Valor a Pagar";
     private static final String SE_DEBE_INGRESAR_EL_ESTADO = "Se debe ingresar el estado";
     public static final String LA_FECHA_NO_PUEDE_SER_IGUAL_AL_DIA_DE_DESCANSO = "La fecha no puede ser igual al dia de descanso";
+    public static final String LA_FECHA_NO_PUEDE_SER_MENOR_AL_DIA_ACTUAL = "La fecha no puede ser menor al dia de actual";
     public static final String LA_HORA_DEBE_SER_UNA_HORA_HABIL_DE_SERVICIO = "La hora debe ser una hora habil de servicio";
 
     public static final int HORA_APERTURA_DEL_ESTABLECIMIENTO = 17;
@@ -42,6 +43,7 @@ public class Reserva {
         validarObligatorio(valorPagar, SE_DEBE_INGRESAR_EL_VALOR_A_PAGAR);
         validarObligatorio(estado, SE_DEBE_INGRESAR_EL_ESTADO);
 
+        validarFechaNoPuedeSerInferiorAlDiaDeHoy(fecha, LA_FECHA_NO_PUEDE_SER_MENOR_AL_DIA_ACTUAL);
         validarFechaNoPuedeSerIgualAlDiaDeDescanso(fecha, LA_FECHA_NO_PUEDE_SER_IGUAL_AL_DIA_DE_DESCANSO);
         validarHoraDebeSerUnaHoraHabilDeServicio(
                 fecha, HORA_APERTURA_DEL_ESTABLECIMIENTO,
@@ -67,6 +69,12 @@ public class Reserva {
             valorTotal -= (valorTotal * DESCUENTO) / 100;
         }
         return valorTotal;
+    }
+
+    public static void validarFechaNoPuedeSerInferiorAlDiaDeHoy(LocalDateTime fecha, String mensaje) {
+        if (fecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
     }
 
     public static void validarFechaNoPuedeSerIgualAlDiaDeDescanso(LocalDateTime fecha, String mensaje) {
