@@ -42,8 +42,8 @@ class ReservaTest {
     @DisplayName("Deberia crear correctamente la Reserva con descuento")
     void deberiaCrearCorrectamenteLaReservaConDescuento() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-05-22T19:12:43");
-        double valorConDescuento = 60000;
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-24T19:12:43");
+        double valorConDescuento = 48000;
 
         Reserva reserva = new ReservaTestDataBuilder()
                 .conId(1L)
@@ -69,7 +69,7 @@ class ReservaTest {
     @DisplayName("Deberia fallar la creacion cuando la fecha es dia de descanso")
     void deberiaFallarCuandoLaFechaEsDiaDeDescanso() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-04-25T02:12:43");
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-23T02:12:43");
         ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(1L).conFecha(fecha);
         BasePrueba.assertThrows(() -> {
                     reservaTestDataBuilder.build();

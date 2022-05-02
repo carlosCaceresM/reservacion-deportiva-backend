@@ -17,7 +17,7 @@ public class ComandoReservaTestDataBuilder {
 
     public ComandoReservaTestDataBuilder() {
         nombreUsuario = UUID.randomUUID().toString().substring(0, 20);
-        fecha = LocalDateTime.parse("2022-04-26T17:12:43");
+        fecha = LocalDateTime.parse("2022-05-26T17:12:43");
         horasReservadas = 2;
         valorPagar = 60000;
         estado = true;

@@ -95,10 +95,4 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
-
-    public static void validarFechaNoPuedeSerInferiorAlDiaDeHoy(LocalDateTime fecha, String mensaje) {
-        if (fecha.toLocalDate().isBefore(LocalDateTime.now().toLocalDate())) {
-            throw new ExcepcionValorInvalido(mensaje);
-        }
-    }
 }

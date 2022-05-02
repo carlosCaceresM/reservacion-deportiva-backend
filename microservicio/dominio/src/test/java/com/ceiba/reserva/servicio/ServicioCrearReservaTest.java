@@ -19,9 +19,9 @@ public class ServicioCrearReservaTest {
     @DisplayName("Deberia lanzar una exepcion cuando se valide la existencia de la Reserva")
     void deberiaLanzarUnaExepcionCuandoSeValideLaExistenciaDeLaReserva() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-04-22T19:12:43");
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-22T19:12:43");
 
-        Reserva reserva = new ReservaTestDataBuilder().build();
+        Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe( fecha, 1L)).thenReturn(true);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
@@ -34,9 +34,9 @@ public class ServicioCrearReservaTest {
     @DisplayName("Deberia Crear la Reserva de manera correcta")
     void deberiaCrearLaCanchaDeManeraCorrecta() {
 
-        LocalDateTime fecha = LocalDateTime.parse("2022-04-22T19:12:43");
+        LocalDateTime fecha = LocalDateTime.parse("2022-05-22T19:12:43");
 
-        Reserva reserva = new ReservaTestDataBuilder().build();
+        Reserva reserva = new ReservaTestDataBuilder().conFecha(fecha).build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         Mockito.when(repositorioReserva.existe(fecha,1L)).thenReturn(false);
         Mockito.when(repositorioReserva.crear(reserva)).thenReturn(10L);
