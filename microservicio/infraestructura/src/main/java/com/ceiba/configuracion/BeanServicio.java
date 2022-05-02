@@ -7,6 +7,7 @@ import com.ceiba.cancha.servicio.ServicioEliminarCancha;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.ServicioActualizarReserva;
+import com.ceiba.reserva.servicio.ServicioCancelarReserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import com.ceiba.reserva.servicio.ServicioEliminarReserva;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
@@ -60,8 +61,13 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva) {
-        return new ServicioEliminarReserva(repositorioReserva, daoReserva);
+    public ServicioCancelarReserva servicioCancelarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva) {
+        return new ServicioCancelarReserva(repositorioReserva, daoReserva);
+    }
+
+    @Bean
+    public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva) {
+        return new ServicioEliminarReserva(repositorioReserva);
     }
 
 }

@@ -10,9 +10,11 @@ public interface RepositorioReserva {
 
     void actualizar(Reserva cancha);
 
+    void cancelarReserva(Long id);
+
     void eliminar(Long id);
 
-    boolean existe(LocalDateTime fecha, Long idCancha, boolean estado);
+    boolean existe(LocalDateTime fecha, Long idCancha);
 
     boolean existePorId(Long id);
 

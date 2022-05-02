@@ -3,6 +3,7 @@ package com.ceiba.reserva.controlador;
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.comando.manejador.ManejadorActualizarReserva;
+import com.ceiba.reserva.comando.manejador.ManejadorCancelarReserva;
 import com.ceiba.reserva.comando.manejador.ManejadorCrearReserva;
 import com.ceiba.reserva.comando.manejador.ManejadorEliminarReserva;
 import io.swagger.annotations.Api;
@@ -18,14 +19,18 @@ public class ComandoControladorReserva {
     private final ManejadorCrearReserva manejadorCrearReserva;
     private final ManejadorEliminarReserva manejadorEliminarReserva;
     private final ManejadorActualizarReserva manejadorActualizarReserva;
+    private final ManejadorCancelarReserva manejadorCancelarReserva;
 
     @Autowired
     public ComandoControladorReserva(ManejadorCrearReserva manejadorCrearReserva,
                                      ManejadorEliminarReserva manejadorEliminarReserva,
-                                     ManejadorActualizarReserva manejadorActualizarReserva) {
+                                     ManejadorActualizarReserva manejadorActualizarReserva,
+                                     ManejadorCancelarReserva manejadorCancelarReserva
+    ) {
         this.manejadorCrearReserva = manejadorCrearReserva;
         this.manejadorEliminarReserva = manejadorEliminarReserva;
         this.manejadorActualizarReserva = manejadorActualizarReserva;
+        this.manejadorCancelarReserva = manejadorCancelarReserva;
     }
 
     @PostMapping
@@ -34,16 +39,22 @@ public class ComandoControladorReserva {
         return manejadorCrearReserva.ejecutar(comandoReserva);
     }
 
-    @DeleteMapping(value = "/{id}")
-    @ApiOperation("Eliminar Reserva")
-    public void eliminar(@PathVariable Long id) {
-        manejadorEliminarReserva.ejecutar(id);
-    }
-
     @PutMapping(value = "/{id}")
     @ApiOperation("Actualizar Reserva")
     public void actualizar(@RequestBody ComandoReserva comandoReserva, @PathVariable Long id) {
         comandoReserva.setId(id);
         manejadorActualizarReserva.ejecutar(comandoReserva);
+    }
+
+    @PatchMapping(value = "/{id}")
+    @ApiOperation("Cancelar Reserva")
+    public void cancelarReserva(@PathVariable Long id) {
+        manejadorCancelarReserva.ejecutar(id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ApiOperation("Eliminar Reserva")
+    public void eliminar(@PathVariable Long id) {
+        manejadorEliminarReserva.ejecutar(id);
     }
 }

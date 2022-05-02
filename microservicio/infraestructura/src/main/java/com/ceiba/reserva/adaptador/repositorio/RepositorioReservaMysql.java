@@ -29,6 +29,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @SqlStatement(namespace = "reserva", value = "existePorId")
     private static String sqlExisteReservaPorId;
 
+    @SqlStatement(namespace = "reserva", value = "cancelarReserva")
+    private static String sqlCancelarReserva;
+
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -44,6 +47,15 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     }
 
     @Override
+    public void cancelarReserva(Long id) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlCancelarReserva, paramSource);
+
+    }
+
+    @Override
     public void eliminar(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
@@ -52,11 +64,10 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     }
 
     @Override
-    public boolean existe(LocalDateTime fecha, Long idCancha, boolean estado) {
+    public boolean existe(LocalDateTime fecha, Long idCancha) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("fecha", fecha);
         paramSource.addValue("idCancha", idCancha);
-        paramSource.addValue("estado", estado);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExisteReserva, paramSource, Boolean.class);

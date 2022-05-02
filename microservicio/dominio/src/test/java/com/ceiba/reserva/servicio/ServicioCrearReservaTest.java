@@ -23,7 +23,7 @@ public class ServicioCrearReservaTest {
 
         Reserva reserva = new ReservaTestDataBuilder().build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
-        Mockito.when(repositorioReserva.existe( fecha, 1L, true)).thenReturn(true);
+        Mockito.when(repositorioReserva.existe( fecha, 1L)).thenReturn(true);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
 
         BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva),
@@ -38,7 +38,7 @@ public class ServicioCrearReservaTest {
 
         Reserva reserva = new ReservaTestDataBuilder().build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
-        Mockito.when(repositorioReserva.existe(fecha,1L, true)).thenReturn(false);
+        Mockito.when(repositorioReserva.existe(fecha,1L)).thenReturn(false);
         Mockito.when(repositorioReserva.crear(reserva)).thenReturn(10L);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
 

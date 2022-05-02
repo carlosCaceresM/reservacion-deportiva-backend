@@ -21,7 +21,7 @@ public class ServicioCrearReserva {
     }
 
     private void validarExistenciaPrevia(Reserva reserva) {
-        boolean existe = this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdCancha(), reserva.isEstado());
+        boolean existe = this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdCancha());
         if (existe) {
             throw new ExcepcionDuplicidad(LA_RESERVA_YA_EXISTE_EN_EL_SISTEMA);
         }

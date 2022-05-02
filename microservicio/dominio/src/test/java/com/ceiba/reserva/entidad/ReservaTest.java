@@ -1,8 +1,6 @@
 package com.ceiba.reserva.entidad;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.cancha.servicio.testdatabuilder.CanchaTestDataBuilder;
-import com.ceiba.dominio.ValidadorArgumento;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.reserva.modelo.entidad.Reserva;
