@@ -67,7 +67,7 @@ pipeline{
             }
         }
 
-        stage('Run Database') {
+       /*  stage('Run Database') {
             steps {
                 sh "docker run --rm -d --name ${NOMBRE_DB_DOKER} --network network_reservacion_deportiva -p 3306:3306 -e MYSQL_ROOT_PASSWORD=ceiba mysql:8.0"
             }
@@ -77,7 +77,7 @@ pipeline{
             steps {
                 sh "docker run --rm -d --name ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV} --network network_reservacion_deportiva -p 8081:8080 ${NOMBRE_IMAGEN_DOKER}-${AMBIENTE_DEV}"
             }
-        }
+        } */
     }
     post {
         failure {

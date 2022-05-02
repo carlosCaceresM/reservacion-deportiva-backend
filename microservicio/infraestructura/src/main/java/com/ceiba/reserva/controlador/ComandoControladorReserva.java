@@ -46,7 +46,7 @@ public class ComandoControladorReserva {
         manejadorActualizarReserva.ejecutar(comandoReserva);
     }
 
-    @PatchMapping(value = "/{id}")
+    @PutMapping(value = "/cancelar/{id}")
     @ApiOperation("Cancelar Reserva")
     public void cancelarReserva(@PathVariable Long id) {
         manejadorCancelarReserva.ejecutar(id);

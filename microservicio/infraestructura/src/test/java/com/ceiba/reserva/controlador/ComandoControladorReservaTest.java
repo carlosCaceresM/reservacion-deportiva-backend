@@ -63,6 +63,22 @@ class ComandoControladorReservaTest {
     }
 
     @Test
+    @DisplayName("Deberia Cancelar una Reserva")
+    void deberiaCancelarUnaReserva() throws Exception {
+
+        Long id = 1L;
+        mocMvc.perform(put("/reservas/cancelar/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        mocMvc.perform(get("/reservas")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
+
+    @Test
     @DisplayName("Deberia eliminar una Reserva")
     void deberiaEliminarUnaReserva() throws Exception {
 
