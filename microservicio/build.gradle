@@ -40,6 +40,7 @@ allprojects {
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
 	project.ext.springbootjasypt = ['com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1']
+	project.ext.jacksondataformat = ["com.fasterxml.jackson.dataformat:jackson-dataformat-xml"]
 
 	// Se excluye JUnit 4
 	configurations {

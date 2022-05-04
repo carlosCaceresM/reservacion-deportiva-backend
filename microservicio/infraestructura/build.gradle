@@ -37,6 +37,7 @@ dependencies {
 	implementation project.ext.springbootjdbc
 	runtimeOnly project.ext.db
 	testImplementation project.ext.flywaytest
+	implementation project.ext.jacksondataformat
 
 	
 	implementation project(':dominio')
